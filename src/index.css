@@ -1,5 +1,10 @@
-/* :root {
+:root {
+  --color-primary: #9A86DE;
+  --color-secondary: #e1deec;
+  --color-background: #f5f7fa;
 
-  Add default styles here later
-} */
+  --color-text: #373636;
+
+}
+
 

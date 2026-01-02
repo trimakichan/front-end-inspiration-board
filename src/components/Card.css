@@ -1,0 +1,25 @@
+.card {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-end;
+  padding: 1rem;
+  border-radius: 1rem;
+
+  border: 1px solid;
+  color: var(--color-text);
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+
+}
+
+.card p {
+  align-self: flex-start;
+}
+
+.close-btn {
+  border: none;
+
+}
