@@ -1,0 +1,20 @@
+.header-container {
+  position: sticky;
+  top:0;
+  z-index: 100;
+  border-bottom: 1px solid var(--color-black);
+  box-shadow: 0 4px 8px var(--color-shadow);
+  backdrop-filter: blur(12px);
+
+}
+
+.header-content {
+    margin: 0.8rem;
+}
+
+
+.header-h1 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
