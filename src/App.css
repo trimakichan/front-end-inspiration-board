@@ -18,6 +18,28 @@ body {
 }  
 
 
+.container {
+  height: 90vh;
+  display: flex;
+  gap: 1rem;
+  padding: 2rem;
 
+}
+
+.col-1 {
+  flex: 2;
+  border-radius: 2rem;
+  background-color: var(--color-primary);
+}
+
+.col-2 {
+  flex: 6;
+  background-color: lightpink;
+}
+
+.col-3 {
+  flex: 4;
+  background-color: lightyellow;
+}
 
 
