@@ -42,7 +42,13 @@ const SAMPLE_CARD_DATA = [
     id: 8,
     message: 'Go wine tasting in Tuscany',
     countLikes: 2
+  },
+    {
+    id: 9,
+    message: 'Visit the Leaning Tower of Pisa',
+    countLikes: 6
   }
+
 ];
 
 
@@ -61,9 +67,12 @@ const CardList = () => {
     })
   }
   return (
-    <div>
-        <div >{getCardListJSX()}</div>
-    </div>
+    <section className='card-list'>
+      <div className='card-list__title'>
+      <h1><span className='accent'>Cards</span> for Things to do in Italy</h1>
+      </div>
+        <div className='card-list__container'>{getCardListJSX()}</div>
+    </section>
 
 
   )

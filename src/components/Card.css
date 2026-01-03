@@ -6,11 +6,9 @@
   justify-content: space-around;
   align-items: flex-end;
   padding: 1rem;
+
   border-radius: 1rem;
-
   border: 1px solid;
-  color: var(--color-text);
-
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 
 }
@@ -19,7 +17,10 @@
   align-self: flex-start;
 }
 
-.close-btn {
+.close-btn, .likes {
+  background: transparent;
   border: none;
-
+  padding: 0;
+  cursor: pointer;
 }
+

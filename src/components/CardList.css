@@ -1,5 +1,21 @@
-.card-list {
-  width: 40%;
+.card-list__title {
+  margin-bottom: 2rem;
+  text-align: center;
+  padding: 1rem;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border-radius: 1.5rem;
+
+}
+
+.accent {
+  color: var(--color-accent);
+}
+
+.card-list__container {
   display: flex;
-  
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+
 }

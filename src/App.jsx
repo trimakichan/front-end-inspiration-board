@@ -7,10 +7,10 @@ function App() {
   return (
     <>
       <Header />
-      <div className='container'>
-        <div className="col-1">Boards</div>
-        <div className="col-2"><CardList /></div>
-        <div className="col-3">Forms</div>
+      <div className='layout'>
+        <aside className="sidebar">Boards</aside>
+        <main className="main"><CardList /></main>
+        <aside className="panel">Forms</aside>
       </div>
     </>
   )

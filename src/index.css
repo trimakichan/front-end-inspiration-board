@@ -1,7 +1,8 @@
 :root {
   --color-primary: #9A86DE;
   --color-secondary: #e1deec;
-  --color-background: #f5f7fa;
+  --color-accent: #FBE766;
+  --color-white: #f5f7fa;
   --color-black: #514949;
   --color-shadow: rgb(81, 73, 73, 0.2);
 

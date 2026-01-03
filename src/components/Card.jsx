@@ -9,7 +9,7 @@ const Card = ({ id, msg, likes }) => {
         <img src={CloseIcon} alt="Close" />
       </button>
       <p>{msg}</p>
-      <div className='likes'>{likes} ❤️</div>
+      <button className='likes'>{likes} ❤️</button>
     </div>
   );
 };
