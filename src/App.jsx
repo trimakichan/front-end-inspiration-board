@@ -1,9 +1,10 @@
-import './App.css'
-import CardList from './components/CardList'
-import Header from './components/Header'
+import './App.css';
+import CardList from './components/CardList';
+import Header from './components/Header';
+import NewCardForm from './components/NewCardForm';
+import NewBoardForm from './components/NewBoardForm';
 
 function App() {
-
 
   return (
     <>
@@ -13,8 +14,13 @@ function App() {
         <aside className="sidebar">Insert Board component</aside>
         <main className="main"><CardList /></main>
         {/* Place Form components below */}
-        <aside className="panel">Insert forms for board and card</aside>
+        <aside className="panel">
+      <NewBoardForm />
+      <NewCardForm />
+      
+      </aside>
       </div>
+
     </>
   )
 }

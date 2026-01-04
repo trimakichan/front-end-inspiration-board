@@ -34,12 +34,14 @@ body {
 }
 
 .main {
-  flex: 6;
+  flex: 7;
 }
 
 .panel {
-  flex: 4;
-  background-color: var(--color-secondary);
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 

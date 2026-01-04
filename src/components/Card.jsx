@@ -19,8 +19,6 @@ Card.propTypes = {
   id: PropTypes.number.isRequired,
   msg: PropTypes.string.isRequired,
   likes: PropTypes.number.isRequired
-
-
 }
 
 export default Card

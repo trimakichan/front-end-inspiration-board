@@ -1,0 +1,17 @@
+
+.field {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+}
+
+.field__label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.field__input {
+  padding: 0.75rem;
+}

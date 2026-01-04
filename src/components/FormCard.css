@@ -1,0 +1,15 @@
+
+.form-card {
+  max-width: 400px;
+  padding: 2rem 1.5rem;
+  background-color: var(--color-secondary);
+  border-radius: 2rem;
+  text-align: center;
+}
+
+.form-card__content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
