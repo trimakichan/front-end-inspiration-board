@@ -2,7 +2,7 @@ import './FormCard.css';
 import PropTypes from 'prop-types';
 import Minimize from '../assets/minimize.svg'
 
-const FormCard = ({ title, onHideForm, formType, children }) => {
+const FormCard = ({ title, onHideForm, formType, children, selectedBoardData = '' }) => {
   return (
     <section className='form-card' aria-label={title}>
       <div className='form-card__title'>
@@ -11,6 +11,10 @@ const FormCard = ({ title, onHideForm, formType, children }) => {
           <img src={Minimize} alt="Minimize" />
         </button>
       </div>
+      {selectedBoardData && (
+        <p className="form-card__selected_board">For <span>{selectedBoardData.name}</span></p>
+      )}
+
 
       <div className='form-card__content'>
         {children}

@@ -15,7 +15,7 @@ const CARD_FIELD = {
   label: 'Message'
 }
 
-const NewCardForm = ({onHideForm, formType}) => {
+const NewCardForm = ({onHideForm, formType, selectedBoardData}) => {
   const [cardFormData, setCardFormData] = useState(kDefaults);
 
   const isButtonDisabled = cardFormData.message.trim() === '';
@@ -36,9 +36,8 @@ const NewCardForm = ({onHideForm, formType}) => {
   };
 
   return (
-    <FormCard title={CARD_FIELD.title} onHideForm={onHideForm} formType={formType}>
-    {/* Update the layout later */}
-      <p>For board name</p>
+
+    <FormCard title={CARD_FIELD.title} onHideForm={onHideForm} formType={formType} selectedBoardData={selectedBoardData}>
       <form onSubmit={handleSubmit} className='new-card-form__form'>
         <div className='new-card-form__input'>
           <TextField

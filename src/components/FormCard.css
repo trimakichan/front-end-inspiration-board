@@ -38,8 +38,18 @@
   display: block;
 }
 
+.form-card__selected_board {
+  font-size: 1.1rem;
+  text-align: left;
+  font-style: italic;
+}
+
+.form-card__selected_board span {
+  font-weight: bold;
+  color: var(--color-primary);
+}
+
 .form-card__content {
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
