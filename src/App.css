@@ -28,20 +28,50 @@ body {
 }
 
 .sidebar {
-  flex: 2;
+ /* flex: grow shrink basis; */
+  flex: 0 0 350px;
   border-radius: 2rem;
   background-color: var(--color-primary);
 }
 
 .main {
-  flex: 7;
+  flex: 1;
 }
 
 .panel {
-  flex: 3;
+  flex: 0 0 400px;
   display: flex;
   flex-direction: column;
   gap: 2rem;
+}
+
+.form-launcher {
+  flex: 0 0 130px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+
+.form-btn {
+  color: var(--color-white);
+  font-weight: bold;
+  padding: 0.5rem;
+  background-color: var(--color-primary);
+  outline: none;
+  border: 1px solid var(--color-grey);
+  border-radius: 0.5rem;
+  box-shadow: 8px 8px 1px var(--color-shadow);
+  cursor: pointer;
+}
+
+
+.form-btn:focus,
+.form-btn:focus-visible,
+.form-btn:hover {
+    color: var(--color-black);
+  background-color: var(--color-accent);
+    box-shadow: 8px 8px 1px var(--color-accent);
 }
 
 

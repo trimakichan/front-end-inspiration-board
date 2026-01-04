@@ -15,25 +15,28 @@ const CARD_FIELD = {
   label: 'Message'
 }
 
-const NewCardForm = () => {
+const NewCardForm = ({onHideForm, formType}) => {
   const [cardFormData, setCardFormData] = useState(kDefaults);
 
   const isButtonDisabled = cardFormData.message.trim() === '';
 
   const handleSubmit = event => {
+      console.log('New Card Submit: ', cardFormData)
     event.preventDefault();
     // work on logics here
   }
 
   const handleMessageChange = (e) => {
+    const { value } = e.target;
+
     setCardFormData(prev => ({
       ...prev,
-      message: e.target.value,
+      'message': value,
     }));
   };
 
   return (
-    <FormCard title={CARD_FIELD.title} >
+    <FormCard title={CARD_FIELD.title} onHideForm={onHideForm} formType={formType}>
     {/* Update the layout later */}
       <p>For board name</p>
       <form onSubmit={handleSubmit} className='new-card-form__form'>
@@ -45,7 +48,7 @@ const NewCardForm = () => {
             inputType='textarea'
           />
 
-          {cardFormData.message && <p className='new-card-form__preview'>Preview: {cardFormData.message}</p>}
+          {cardFormData.message && <p className='new-card-form__preview'>Message: {cardFormData.message}</p>}
         </div>
 
         <SubmitButton isDisabled={isButtonDisabled}/>

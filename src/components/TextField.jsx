@@ -17,8 +17,7 @@ const TextField = ({
     onChange,
     placeholder: placeholderValue,
     className: 'field__input'
-  }
-
+  };
 
   return (
     <div className='field'>
@@ -37,7 +36,7 @@ const TextField = ({
   );
 };
 
-TextField.PropTypes
+// TextField.PropTypes
 
 
 export default TextField;

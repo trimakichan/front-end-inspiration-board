@@ -5,7 +5,7 @@ import CloseIcon from '../assets/close-outline.svg'
 const Card = ({ id, msg, likes }) => {
   return (
     <div className='card'>
-      <button className="close-btn">
+      <button className="close-btn" aria-label="Close"> 
         <img src={CloseIcon} alt="Close" />
       </button>
       <p>{msg}</p>

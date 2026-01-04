@@ -1,4 +1,3 @@
-
 .form-card {
   max-width: 400px;
   padding: 2rem 1.5rem;
@@ -7,9 +6,42 @@
   text-align: center;
 }
 
+.form-card__title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.minimize-btn {
+  outline: none;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  padding: 0.7rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.5s ease;
+}
+
+.minimize-btn:focus,
+.minimize-btn:focus-visible,
+.minimize-btn:hover {
+  background-color: var(--color-accent);
+  box-shadow: 8px 8px 1px var(--color-shadow);
+}
+
+.minimize-btn img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
 .form-card__content {
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
+
