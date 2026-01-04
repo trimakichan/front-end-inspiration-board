@@ -39,11 +39,10 @@ body {
 }
 
 .forms-panel {
+  width: 400px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-
-  width: 400px;
   transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -69,7 +68,6 @@ body {
   box-shadow: 8px 8px 1px var(--color-shadow);
   cursor: pointer;
 }
-
 
 .form-btn:focus,
 .form-btn:focus-visible,
