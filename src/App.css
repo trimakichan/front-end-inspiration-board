@@ -16,7 +16,7 @@ body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   line-height: 1.5;
   color: var(--color-black)
-}  
+}
 
 
 .layout {
@@ -28,7 +28,7 @@ body {
 }
 
 .sidebar {
- /* flex: grow shrink basis; */
+  /* flex: grow shrink basis; */
   flex: 0 0 350px;
   border-radius: 2rem;
   background-color: var(--color-primary);
@@ -38,17 +38,22 @@ body {
   flex: 1;
 }
 
-.panel {
-  flex: 0 0 400px;
+.forms-panel {
+  overflow: hidden;
   display: flex;
   flex-direction: column;
+
+  width: 400px;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.forms-panel--expanded {
+  width: 400px;
   gap: 2rem;
 }
 
-.form-launcher {
-  flex: 0 0 130px;
-  display: flex;
-  flex-direction: column;
+.forms-panel--selector {
+  width: 130px;
   gap: 1rem;
 }
 
@@ -69,9 +74,7 @@ body {
 .form-btn:focus,
 .form-btn:focus-visible,
 .form-btn:hover {
-    color: var(--color-black);
+  color: var(--color-black);
   background-color: var(--color-accent);
-    box-shadow: 8px 8px 1px var(--color-accent);
+  box-shadow: 8px 8px 1px var(--color-accent);
 }
-
-

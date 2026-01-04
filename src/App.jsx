@@ -36,7 +36,7 @@ function App() {
         <aside className='sidebar'>Insert Board component</aside>
         <main className="main"><CardList /></main>
 
-          <aside className={hideAllForms ? 'form-launcher' : 'panel'}>
+          <aside className={`forms-panel ${hideAllForms ? 'forms-panel--selector' : 'forms-panel--expanded'}`}>
             {showForms.boardForm ? (
               <NewBoardForm onHideForm={toggleShowForm} formType={FORM_TYPES.BOARD} />)
             : 
