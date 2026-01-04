@@ -3,43 +3,60 @@ import './NewBoardForm.css'
 import PropTypes from 'prop-types';
 import FormCard from './FormCard';
 import TextField from './TextField';
+import SubmitButton from './SubmitButton';
 
 
 const kDefaults = {
   title: '',
-  name: ''
-}
+  owner: ''
+};
 
-const TITLE = 'Create a New Board'
+const BOARD_FIELDS = {
+  title: 'Create a New Board',
+  fields: [
+    {
+      name: 'title',
+      label: 'Title',
+    },
+    {
+      name: 'owner',
+      label: "Owner's Name"
+    }
+  ]
+};
 
 const NewBoardForm = () => {
   const [boardFormData, setBoardFormData] = useState(kDefaults);
+
+  const isButtonDisabled = boardFormData.title.trim() === '' || boardFormData.owner.trim() === '';
 
   const handleSubmit = event => {
     event.preventDefault();
     // work on logics here
   }
 
+  const handleBoardInputChange = (field) => (e) => {
+    setBoardFormData(prev => ({
+      ...prev,
+      [field]: e.target.value,
+    }));
+  };
+
   return (
-    <FormCard title={TITLE} >
+    <FormCard title={BOARD_FIELDS.title} >
       <form onSubmit={handleSubmit} className='new-board-form__form'>
         <div className='new-board-form__input'>
-          <TextField
-            label='Title'
-            value={boardFormData.message}
-            // update here
-            onChange={e => setBoardFormData(e.target.value)}
-          />
-          <TextField
-            label="Owner's Name"
-            value={boardFormData.message}
-             // update here
-            onChange={e => setBoardFormData(e.target.value)}
-          />
+          {BOARD_FIELDS.fields.map((field)=> (
+            <TextField
+              key={field.name}
+              label={field.label}
+              value={boardFormData[field.name]}
+              onChange={handleBoardInputChange(field.name)}
+            />
+          ))}
         </div>
 
-        <button type="submit" className='submit-btn'>Submit</button>
-
+        <SubmitButton isDisabled={isButtonDisabled} />
 
       </form>
     </FormCard>

@@ -1,7 +1,6 @@
 import './FormCard.css';
 import PropTypes from 'prop-types';
 
-
 const FormCard = ({ title, children }) => {
   return (
     <section className='form-card' aria-label={title}>
