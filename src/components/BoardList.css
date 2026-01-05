@@ -1,0 +1,12 @@
+
+
+
+.board-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.board-list__title {
+  color: var(--color-accent)
+}

@@ -1,0 +1,19 @@
+
+
+.board__name {
+  padding: 0.5rem 0.8rem;
+  background-color: var(--color-white);
+  border-radius: 0.8rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+
+  border: 1px solid var(--color-secondary);
+  border-radius: 0.5rem;
+  cursor: pointer;
+
+}
+
+.board__name:focus,
+.board__name:focus-visible {
+  background-color: var(--color-accent);
+}

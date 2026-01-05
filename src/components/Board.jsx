@@ -1,25 +1,25 @@
-import PropTypes from 'prop-Types';
+import PropTypes from 'prop-types';
+import './Board.css';
 
-const Board = ({id, tile, ownerName}) => {
-	const increaseCardLikes = () => {
-		onLike(id);
-	}
+const Board = ({ id, name, ownerName, onUpdateSelectedBoard }) => {
+
+  return (
+    <>
+      <div className="board">
+        <button onClick={() => onUpdateSelectedBoard(id)} className='board__name'>
+          {name}
+        </button>
+        {/* <h3 className='board__owner'>ownerName: {ownerName}</h3> */}
+      </div>
+    </>
+  );
 };
-
-return(
-	<li className="Board">
-		<h2>{title}</h2>
-		<h3>ownerName: {ownerName}</h3>	
-	</li>
-	<button onClick={(event) => increaseCardLikes()}>Like</button>
-	);
-
 
 Board.propTypes = {
   id: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   ownerName: PropTypes.string.isRequired,
-	onLike: PropTypes.func.isRequired,
+  onUpdateSelectedBoard: PropTypes.func.isRequired,
 };
 
 export default Board;
