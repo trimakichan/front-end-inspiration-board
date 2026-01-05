@@ -5,6 +5,7 @@ function App() {
   return (
     <>
     <h1>Welcome To Inspiration Board!</h1>
+    <boardList />
     </>
   )
 }
