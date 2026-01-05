@@ -1,42 +1,78 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
+/* index.css */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.5;
+  color: var(--color-black)
+}
+
+
+.layout {
+  padding-top: 80px;
+  display: flex;
+  gap: 1rem;
   padding: 2rem;
-  text-align: center;
+
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.sidebar {
+  /* flex: grow shrink basis; */
+  flex: 0 0 350px;
+  border-radius: 2rem;
+  background-color: var(--color-primary);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.main {
+  flex: 1;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.forms-panel {
+  width: 400px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.card {
-  padding: 2em;
+.forms-panel--expanded {
+  width: 400px;
+  gap: 2rem;
 }
 
-.read-the-docs {
-  color: #888;
+.forms-panel--selector {
+  width: 130px;
+  gap: 1rem;
+}
+
+
+.form-btn {
+  color: var(--color-white);
+  font-weight: bold;
+  padding: 0.5rem;
+  background-color: var(--color-primary);
+  outline: none;
+  border: 1px solid var(--color-grey);
+  border-radius: 0.5rem;
+  box-shadow: 8px 8px 1px var(--color-shadow);
+  cursor: pointer;
+}
+
+.form-btn:focus,
+.form-btn:focus-visible,
+.form-btn:hover {
+  color: var(--color-black);
+  background-color: var(--color-accent);
+  box-shadow: 8px 8px 1px var(--color-accent);
 }

@@ -1,0 +1,25 @@
+.card {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-end;
+  padding: 1rem;
+
+  border-radius: 1rem;
+  border: 1px solid;
+  box-shadow: 8px 8px 1px var(--color-shadow);
+}
+
+.card p {
+  align-self: flex-start;
+}
+
+.close-btn, .likes {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
