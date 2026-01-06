@@ -3,7 +3,7 @@ export const SAMPLE_DATA = [
   {
     id: 1,
     name: 'Things to do in Italy',
-    ownerName: 'Makiko Yokoyama',
+    owner: 'Makiko Yokoyama',
     cards: [{
       id: 1,
       message: 'Visit the Colosseum',
@@ -53,7 +53,7 @@ export const SAMPLE_DATA = [
   {
     id: 2,
     name: 'Things to do in Japan',
-    ownerName:'Divya Potnuru',
+    owner:'Divya Potnuru',
     cards: [
       {
         id: 1,

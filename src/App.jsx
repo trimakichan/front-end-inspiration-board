@@ -68,7 +68,7 @@ function App() {
   const handleLikeCard = (boardId, cardId) => {
     return likeCardAPI(boardId, cardId)
       .then(() => {
-        return setBoardData(boardData => {
+        setBoardData(boardData => {
           return boardData.filter(board => board.id === boardId).cards
             .map(card => card.id === cardId ? likeCard(card) : card)
         });
