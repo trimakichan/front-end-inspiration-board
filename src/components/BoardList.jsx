@@ -5,22 +5,24 @@ import './BoardList.css';
 const BoardList = ({ boards, onUpdateSelectedBoard }) => {
   const boardComponents = boards.map((board) => {
     return (
+      <li className='board-list__item'  key={board.id}>
       <Board
-        key={board.id}
         id={board.id}
         name={board.name}
-        ownerName={board.ownerName}
         onUpdateSelectedBoard={onUpdateSelectedBoard}
       />
+    </li>
     )
 
   })
 
   return (
-    <div className='board-list'>
+    <section className='board-list'>
       <h1 className='board-list__title'>Board List</h1>
+      <ul className='board-list__items'>
         {boardComponents}
-    </div>
+      </ul>
+    </section>
 
   );
 };
@@ -28,7 +30,7 @@ const BoardList = ({ boards, onUpdateSelectedBoard }) => {
 BoardList.propTypes = {
   boards: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
     ownerName: PropTypes.string.isRequired,
   })).isRequired,
   onUpdateSelectedBoard: PropTypes.func.isRequired,

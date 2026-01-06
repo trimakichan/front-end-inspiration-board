@@ -1,6 +1,7 @@
 import './CardList.css';
 import Card from './Card';
 import PropTypes from 'prop-types';
+import WelcomeImage from '../assets/work.svg'
 
 
 const CardList = ({ selectedBoardData }) => {
@@ -22,9 +23,28 @@ const CardList = ({ selectedBoardData }) => {
   return (
     <section className='card-list'>
       <div className='card-list__title'>
-        <h1><span className='accent'>Cards For </span> {selectedBoardData &&  selectedBoardData.name}</h1>
+        <h1>{selectedBoardData ? (
+          <>
+            <span className='accent'>Cards For </span>
+            {selectedBoardData.name}
+          </>
+        ) :
+          'Please select a board!'
+        }
+        </h1>
       </div>
-      <div className='card-list__container'>{selectedBoardData ? getCardListJSX() : 'Please Select a Board'}</div>
+      <div className='card-list__container'>
+        {selectedBoardData ? getCardListJSX()
+          :
+          (
+            <div className='card-list__welcome'>
+              <h1 className='card-list__welcome-title'>✨ Welcome to your inspiration board ✨
+                <span>Choose a board to start exploring ideas.</span>
+              </h1>
+              <img src={WelcomeImage} />
+            </div>
+          )}
+      </div>
     </section>
 
 
