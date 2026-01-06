@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
 import CardList from './components/CardList';
@@ -21,6 +21,12 @@ const formVisibility = {
   cardForm: true
 };
 
+const getAllBoardsAPI = () => {
+  return axios.get(`${kbaseURL}/boards`)
+  .then(response => response.data)
+  .catch(error => console.log(error));
+};
+
 const removeCardAPI = (boardId, cardId) => {
   return axios.delete(`${kbaseURL}/boards/${boardId}/cards/${cardId}`)
     .catch(error => console.log(error));
@@ -31,7 +37,6 @@ const likeCardAPI = (boardId, cardId) => {
     .catch(error => console.log(error));
 };
 
-
 const likeCard = card => {
   return { ...card, countLikes: card.countLikes + 1 };
 };
@@ -39,9 +44,18 @@ const likeCard = card => {
 
 function App() {
   const [showForms, setShowForms] = useState(formVisibility);
-  const [boardData, setBoardData] = useState(SAMPLE_DATA)
+  const [boardData, setBoardData] = useState([])
   const [selectedBoard, setSelectedBoard] = useState()
   const hideAllForms = !showForms.boardForm && !showForms.cardForm;
+
+
+  useEffect(() => {
+  getAllBoardsAPI().then(boards => {
+    // const newBoards = boards.map(convertFromAPI);
+    setBoardData(boards);
+  });
+}, []);
+
 
   const toggleShowForm = (formType) => {
     setShowForms(prev => ({
@@ -52,6 +66,7 @@ function App() {
 
   const handleSelectedBoard = (id) => {
     const board = boardData.find(board => board.id === id);
+    console.log('selected board', board)
     setSelectedBoard(board)
   };
 
@@ -75,17 +90,26 @@ function App() {
       });
   };
 
+  const handleBoardSubmit = data => {
+    axios.post(`${kbaseURL}/boards`, data)
+      .then(result => {
+        setBoardData(boardData => {
+          console.log('result data', result.data.board)
+          return [result.data.board, ...boardData]});
+      }).catch(e => console.log(e));
+  };
+
 
   return (
     <>
       <Header />
       <div className='layout'>
         <aside className='sidebar'><BoardList boards={boardData} onUpdateSelectedBoard={handleSelectedBoard} /> </aside>
-        <main className="main"><CardList selectedBoardData={selectedBoard} /></main>
+        <main className="main"><CardList selectedBoardData={selectedBoard} onIncreaseLike={handleLikeCard} onRemoveCard={handleRemoveCard}/></main>
 
         <aside className={`forms-panel ${hideAllForms ? 'forms-panel--selector' : 'forms-panel--expanded'}`}>
           {showForms.boardForm ? (
-            <NewBoardForm onHideForm={toggleShowForm} formType={FORM_TYPES.BOARD} />)
+            <NewBoardForm onHideForm={toggleShowForm} formType={FORM_TYPES.BOARD} onHandleBoardSubmit={handleBoardSubmit} />)
             :
             <button className='form-btn' onClick={() => toggleShowForm(FORM_TYPES.BOARD)}>Board Form</button>
           }

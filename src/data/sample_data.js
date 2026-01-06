@@ -12,7 +12,7 @@ export const SAMPLE_DATA = [
     {
       id: 2,
       message: 'Eat pizza in Naples',
-      countLikes: 5
+      countLikes: 5 
     },
     {
       id: 3,

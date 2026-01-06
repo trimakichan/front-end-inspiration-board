@@ -7,7 +7,7 @@ import SubmitButton from './SubmitButton';
 
 
 const kDefaults = {
-  title: '',
+  name: '',
   owner: '',
 };
 
@@ -15,7 +15,7 @@ const BOARD_FIELDS = {
   title: 'Create a New Board',
   fields: [
     {
-      name: 'title',
+      name: 'name',
       label: 'Title',
     },
     {
@@ -25,16 +25,17 @@ const BOARD_FIELDS = {
   ]
 };
 
-const NewBoardForm = ({onHideForm, formType}) => {
+const NewBoardForm = ({onHideForm, formType, onHandleBoardSubmit}) => {
   const [boardFormData, setBoardFormData] = useState(kDefaults);
 
-  const isButtonDisabled = boardFormData.title.trim() === '' || boardFormData.owner.trim() === '';
-  const showPreview = boardFormData.title.trim()  || boardFormData.owner.trim();
+  const isButtonDisabled = boardFormData.name.trim() === '' || boardFormData.owner.trim() === '';
+  const showPreview = boardFormData.name.trim()  || boardFormData.owner.trim();
 
   const handleSubmit = event => {
     console.log('New Board Submit: ', boardFormData)
     event.preventDefault();
-    // work on logics here
+    onHandleBoardSubmit(boardFormData);
+    setBoardFormData(kDefaults);
   }
 
   const handleBoardInputChange = (field) => (e) => {
@@ -59,11 +60,11 @@ const NewBoardForm = ({onHideForm, formType}) => {
         </div>
 
         {showPreview && (<div>
-          {boardFormData.title && (
-            <p className='new-board-form__preview'>Title: {boardFormData.title}</p>
+          {boardFormData.name && (
+            <p className='new-board-form__preview'>Title: {boardFormData.name}</p>
           )}
           {boardFormData.owner && (
-            <p className='new-board-form__preview'>Name: {boardFormData.owner}</p>
+            <p className='new-board-form__preview'>Owner: {boardFormData.owner}</p>
           )}
         </div>)}
 
