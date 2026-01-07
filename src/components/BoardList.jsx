@@ -9,6 +9,7 @@ const BoardList = ({ boards, onUpdateSelectedBoard }) => {
       <Board
         id={board.id}
         name={board.name}
+        ownerName={board.ownerName}
         onUpdateSelectedBoard={onUpdateSelectedBoard}
       />
     </li>

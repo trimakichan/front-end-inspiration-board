@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import './NewBoardForm.css'
-import PropTypes from 'prop-types';
 import FormCard from './FormCard';
 import TextField from './TextField';
 import SubmitButton from './SubmitButton';
+import PropTypes from 'prop-types';
 
 
 const kDefaults = {
@@ -20,7 +20,7 @@ const BOARD_FIELDS = {
     },
     {
       name: 'owner',
-      label: "Owner's Name"
+      label: 'Owner Name'
     }
   ]
 };
