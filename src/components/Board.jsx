@@ -8,7 +8,7 @@ const Board = ({ id, name,owner, onUpdateSelectedBoard }) => {
       <div className="board">
         <button onClick={() => onUpdateSelectedBoard(id)} className='board__name'>
           {name} 
-          {owner}
+          <p>by {owner}</p>
         </button>
       </div>
     </>

@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 import CloseIcon from '../assets/close-outline.svg'
 
 const Card = ({ cardId, boardId, msg, likes, onIncreaseLike, onRemoveCard }) => {
+  // console.log('card', likes)
   return (
     <div className='card'>
       <button onClick={() => onRemoveCard(boardId, cardId)} className="close-btn" aria-label="Close"> 
         <img src={CloseIcon} alt="Close" />
       </button>
       <p>{msg}</p>
-      <button onClick={() => onIncreaseLike(boardId,cardId)} className='likes'>{likes} ❤️</button>
+      <button onClick={() => onIncreaseLike(boardId, cardId)} className='likes'>{likes} ❤️</button>
     </div>
   );
 };

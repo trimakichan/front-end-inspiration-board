@@ -7,7 +7,7 @@ export const SAMPLE_DATA = [
     cards: [{
       id: 1,
       message: 'Visit the Colosseum',
-      countLikes: 2
+      likes: 2
     },
     {
       id: 2,

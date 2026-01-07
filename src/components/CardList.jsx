@@ -13,7 +13,7 @@ const CardList = ({ selectedBoardData, onIncreaseLike, onRemoveCard }) => {
         cardId={card.id}
         boardId={selectedBoardData.id} 
         msg={card.message}
-        likes={card.countLikes}
+        likes={card.likes}
         onIncreaseLike = {onIncreaseLike}
         onRemoveCard={onRemoveCard}
       />

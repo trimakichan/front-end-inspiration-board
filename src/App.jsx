@@ -8,7 +8,6 @@ import NewCardForm from './components/NewCardForm';
 import NewBoardForm from './components/NewBoardForm';
 import { SAMPLE_DATA } from './data/sample_data';
 
-
 const kbaseURL = 'https://back-end-inspiration-board-7juo.onrender.com';
 
 const FORM_TYPES = {
@@ -28,17 +27,17 @@ const getAllBoardsAPI = () => {
 };
 
 const removeCardAPI = (boardId, cardId) => {
-  return axios.delete(`${kbaseURL}/boards/${boardId}/cards/${cardId}`)
+  return axios.delete(`${kbaseURL}/cards/${cardId}`)
     .catch(error => console.log(error));
 };
 
-const likeCardAPI = (boardId, cardId) => {
-  return axios.patch(`${kbaseURL}/boards/${boardId}/cards/${cardId}`)
+const likeCardAPI = (cardId) => {
+  return axios.patch(`${kbaseURL}/cards/${cardId}`)
     .catch(error => console.log(error));
 };
 
 const likeCard = card => {
-  return { ...card, countLikes: card.countLikes + 1 };
+  return { ...card, likes: card.countLikes + 1 };
 };
 
 
@@ -56,6 +55,11 @@ function App() {
     });
   }, []);
 
+  useEffect(() => {
+    console.log('board data from app: ', boardData)
+
+  }, [boardData])
+
 
   const toggleShowForm = (formType) => {
     setShowForms(prev => ({
@@ -66,28 +70,71 @@ function App() {
 
   const handleSelectedBoard = (id) => {
     const board = boardData.find(board => board.id === id);
-    console.log('selected board', board)
     setSelectedBoard(board)
   };
 
-  const handleRemoveCard = (boardId, cardId) => {
-    // return removeCardAPI(boardId, cardId)
-    //   .then(() => {
-    //     setBoardData(boardData => {
-    //       return boardData.filter(board => board.id === boardId).cards
-    //         .filter(card => card.id !== cardId);
-    //     });
-    //   });
-  };
+const handleRemoveCard = (boardId, cardId) => {
+  return removeCardAPI(boardId, cardId)
+    .then(() => {
+
+      setBoardData(boardData =>
+        boardData.map(board =>
+          board.id === boardId
+            ? {
+                ...board,
+                cards: board.cards.filter(card => card.id !== cardId)
+              }
+            : board
+        )
+      );
+
+      setSelectedBoard(selectedBoardData =>
+        selectedBoardData?.id === boardId
+          ? {
+              ...selectedBoardData,
+              cards: selectedBoardData.cards.filter(
+                card => card.id !== cardId
+              )
+            }
+          : selectedBoardData
+      );
+
+    });
+};
+
 
   const handleLikeCard = (boardId, cardId) => {
-    // return likeCardAPI(boardId, cardId)
-    //   .then(() => {
-    //     setBoardData(boardData => {
-    //       return boardData.filter(board => board.id === boardId).cards
-    //         .map(card => card.id === cardId ? likeCard(card) : card)
-    //     });
-    //   });
+    return likeCardAPI(cardId)
+      .then(() => {
+        setBoardData(boardData =>
+          boardData.map(board =>
+            board.id === boardId
+              ? {
+                ...board,
+                cards: board.cards.map(card =>
+                  card.id === cardId
+                    ? likeCard(card)
+                    : card
+                )
+              }
+              : board
+          )
+        );
+
+        setSelectedBoard(selectedBoardData =>
+          selectedBoardData?.id === boardId
+            ? {
+              ...selectedBoardData,
+              cards: selectedBoardData.cards.map(card =>
+                card.id === cardId
+                  ? { ...card, likes: card.likes + 1 }
+                  : card
+              )
+            }
+            : selectedBoardData
+        );
+
+      });
   };
 
   const handleBoardSubmit = data => {
