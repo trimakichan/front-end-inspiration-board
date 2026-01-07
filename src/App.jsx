@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
-import CardList from './components/CardList';
 import Header from './components/Header';
+import BoardList from './components/BoardList';
+import CardList from './components/CardList';
 import NewCardForm from './components/NewCardForm';
 import NewBoardForm from './components/NewBoardForm';
 import { SAMPLE_DATA } from './data/sample_data';
-import Board from './components/Board';
 
 
 const kbaseURL = 'https://back-end-inspiration-board-7juo.onrender.com';
@@ -71,74 +71,55 @@ function App() {
   };
 
   const handleRemoveCard = (boardId, cardId) => {
-    return removeCardAPI(boardId, cardId)
-      .then(() => {
-        setBoardData(boardData => {
-          return boardData.filter(board => board.id === boardId).cards
-            .filter(card => card.id !== cardId);
-        });
-      });
+    // return removeCardAPI(boardId, cardId)
+    //   .then(() => {
+    //     setBoardData(boardData => {
+    //       return boardData.filter(board => board.id === boardId).cards
+    //         .filter(card => card.id !== cardId);
+    //     });
+    //   });
   };
 
   const handleLikeCard = (boardId, cardId) => {
-    return likeCardAPI(boardId, cardId)
-      .then(() => {
-        setBoardData(boardData => {
-          return boardData.filter(board => board.id === boardId).cards
-            .map(card => card.id === cardId ? likeCard(card) : card)
-        });
-      });
+    // return likeCardAPI(boardId, cardId)
+    //   .then(() => {
+    //     setBoardData(boardData => {
+    //       return boardData.filter(board => board.id === boardId).cards
+    //         .map(card => card.id === cardId ? likeCard(card) : card)
+    //     });
+    //   });
   };
 
   const handleBoardSubmit = data => {
     axios.post(`${kbaseURL}/boards`, data)
       .then(result => {
         setBoardData(boardData => {
-          // console.log('result data', result.data.board)
           return [result.data.board, ...boardData]
         });
       }).catch(e => console.log(e));
   };
 
   const handleCardSubmit = (boardId, data) => {
-    console.log('board id', boardId, 'data', data)
+    // console.log('board id', boardId, 'data', data)
     axios.post(`${kbaseURL}/boards/${boardId}/cards`, data)
       .then(results => {
-        setBoardData(boardData => {
+        const newCard = results.data;
+        setBoardData(boardData => (
           boardData.map(board => (
             board.id === boardId
-              ? { ...board, cards: [...board.cards, results.data] }
+              ? { ...board, cards: [...board.cards, newCard] }
               : board
           )
           )
-        });
+        ));
+
+        setSelectedBoard(selectedBoardData => (
+          selectedBoardData?.id === boardId
+            ? { ...selectedBoardData, cards: [...selectedBoardData.cards, newCard] }
+            : selectedBoardData
+        ));
       });
   };
-
-
-  //   function addCard(boardId, text) {
-  //   setBoards(boards.map(board =>
-  //     board.id === boardId
-  //       ? { ...board, cards: [...board.cards, { id: Date.now(), text }] }
-  //       : board
-  //   ));
-  // }
-
-  // data
-  // : 
-  // board_id => boardId
-  // : 
-  // 2
-  // id
-  // : 
-  // 6
-  // likes
-  // : 
-  // 0
-  // message
-  // : 
-  // "message"
-
 
   return (
     <>
@@ -162,31 +143,8 @@ function App() {
       </div>
     </>
   )
-}
-
-export default Appexport const BoardList = ({ boards, onUpdateSelectedBoard }) => {
-  console.log('boards: ', boards);
-  const boardComponents = boards.map((board) => {
-    return (
-      <li className='board-list__item' key={board.id}>
-        <Board
-          id={board.id}
-          name={board.name}
-          owner={board.owner}
-          onUpdateSelectedBoard={onUpdateSelectedBoard} />
-      </li>
-    );
-
-  });
-
-  return (
-    <section className='board-list'>
-      <h1 className='board-list__title'>Board List</h1>
-      <ul className='board-list__items'>
-        {boards && boardComponents}
-      </ul>
-    </section>
-
-  );
 };
+
+
+export default App;
 
