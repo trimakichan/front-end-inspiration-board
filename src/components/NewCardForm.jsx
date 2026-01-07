@@ -15,15 +15,17 @@ const CARD_FIELD = {
   label: 'Message'
 }
 
-const NewCardForm = ({onHideForm, formType, selectedBoardData}) => {
+const NewCardForm = ({onHideForm, formType, selectedBoardData, onHandleCardSubmit}) => {
   const [cardFormData, setCardFormData] = useState(kDefaults);
 
   const isButtonDisabled = cardFormData.message.trim() === '';
 
   const handleSubmit = event => {
-      console.log('New Card Submit: ', cardFormData)
+    console.log('New Card Submit: ', cardFormData)
     event.preventDefault();
-    // work on logics here
+    const boardId = selectedBoardData.id
+    onHandleCardSubmit(boardId ,cardFormData);
+    setCardFormData(kDefaults);
   }
 
   const handleMessageChange = (e) => {
