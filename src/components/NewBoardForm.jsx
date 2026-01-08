@@ -32,7 +32,6 @@ const NewBoardForm = ({onHideForm, formType, onHandleBoardSubmit}) => {
   const showPreview = boardFormData.name.trim()  || boardFormData.owner.trim();
 
   const handleSubmit = event => {
-    console.log('New Board Submit: ', boardFormData)
     event.preventDefault();
     onHandleBoardSubmit(boardFormData);
     setBoardFormData(kDefaults);
@@ -73,6 +72,12 @@ const NewBoardForm = ({onHideForm, formType, onHandleBoardSubmit}) => {
       </form>
     </FormCard>
   );
+};
+
+NewBoardForm.propTypes = {
+  onHideForm: PropTypes.func.isRequired,
+  formType: PropTypes.string.isRequired,
+  onHandleBoardSubmit: PropTypes.func.isRequired,
 };
 
 export default NewBoardForm;

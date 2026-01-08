@@ -15,19 +15,19 @@ const CARD_FIELD = {
   label: 'Message'
 }
 
-const NewCardForm = ({onHideForm, formType, selectedBoardData, onHandleCardSubmit}) => {
+const NewCardForm = ({ onHideForm, formType, selectedBoardData, onHandleCardSubmit }) => {
   const [cardFormData, setCardFormData] = useState(kDefaults);
+  const [showMsgError, setShowMsgError] = useState(false)
 
   const isButtonDisabled = cardFormData.message.trim() === '';
 
-  const handleSubmit = event => {
-    console.log('New Card Submit: ', cardFormData)
+  const handleSubmit = (event) => {
     event.preventDefault();
-    const boardId = selectedBoardData.id
-    onHandleCardSubmit(boardId ,cardFormData);
+    if (!selectedBoardData) return;
+    const boardId = selectedBoardData.id;
+    onHandleCardSubmit(boardId, cardFormData);
     setCardFormData(kDefaults);
   }
-
   const handleMessageChange = (e) => {
     const { value } = e.target;
 
@@ -35,6 +35,8 @@ const NewCardForm = ({onHideForm, formType, selectedBoardData, onHandleCardSubmi
       ...prev,
       'message': value,
     }));
+
+    setShowMsgError(value.length > 40);
   };
 
   return (
@@ -42,6 +44,20 @@ const NewCardForm = ({onHideForm, formType, selectedBoardData, onHandleCardSubmi
     <FormCard title={CARD_FIELD.title} onHideForm={onHideForm} formType={formType} selectedBoardData={selectedBoardData}>
       <form onSubmit={handleSubmit} className='new-card-form__form'>
         <div className='new-card-form__input'>
+          {showMsgError && 
+          (
+          <div className='new-card-form__error'>
+            <p>
+              Message must be under 40 characters 
+            </p>
+          </div>
+        )}
+
+        {!selectedBoardData && (
+          <p className='new-card-form__error'>
+            Please select a board to add a card.
+          </p>
+        )} 
           <TextField
             label={CARD_FIELD.label}
             value={cardFormData.message}
@@ -52,13 +68,22 @@ const NewCardForm = ({onHideForm, formType, selectedBoardData, onHandleCardSubmi
           {cardFormData.message && <p className='new-card-form__preview'>Message: {cardFormData.message}</p>}
         </div>
 
-        <SubmitButton isDisabled={isButtonDisabled}/>
+        <SubmitButton isDisabled={isButtonDisabled} />
 
       </form>
     </FormCard>
   );
 };
 
-//add propsTypes
+NewCardForm.propTypes = {
+  onHideForm: PropTypes.func.isRequired,
+  formType: PropTypes.string.isRequired,
+  selectedBoardData: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string,
+    owner: PropTypes.string,
+  }),
+  onHandleCardSubmit: PropTypes.func.isRequired,
+};
 
 export default NewCardForm;

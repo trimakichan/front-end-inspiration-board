@@ -27,11 +27,13 @@
 
 .card-list__welcome-title {
   font-weight: 500;
+  
+
 }
 
 .card-list__welcome-title span {
   display: block;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   text-align: center;
   font-style: italic;
 }

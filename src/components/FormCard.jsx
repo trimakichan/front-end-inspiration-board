@@ -2,7 +2,7 @@ import './FormCard.css';
 import PropTypes from 'prop-types';
 import Minimize from '../assets/minimize.svg'
 
-const FormCard = ({ title, onHideForm, formType, children, selectedBoardData = '' }) => {
+const FormCard = ({ title, onHideForm, formType, children, selectedBoardData }) => {
   return (
     <section className='form-card' aria-label={title}>
       <div className='form-card__title'>
@@ -27,7 +27,10 @@ FormCard.propTypes = {
   title: PropTypes.string.isRequired,
   onHideForm: PropTypes.func.isRequired,
   formType: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired
-}
+  children: PropTypes.node.isRequired,
+  selectedBoardData: PropTypes.shape({
+    name: PropTypes.string,
+  }),
+};
 
 export default FormCard;

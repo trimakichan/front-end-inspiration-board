@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import './Board.css';
 
-const Board = ({ id, name,owner, onUpdateSelectedBoard }) => {
+const Board = ({ id, name, owner, onUpdateSelectedBoard }) => {
 
   return (
     <>

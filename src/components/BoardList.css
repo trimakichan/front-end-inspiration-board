@@ -1,6 +1,4 @@
 
-
-
 .board-list__title {
   color: var(--color-accent);
   margin-bottom: 2rem;
@@ -8,10 +6,34 @@
 
 .board-list__items {
   display: flex;
+  max-height: 700px;
+  overflow-y: auto;
+  padding-right: 1rem;
   flex-direction: column;
   gap: 1rem;
+}
+
+.board-list__items {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-accent) transparent;
+}
+
+.board-list__items::-webkit-scrollbar {
+  width: 10px;
+}
+
+.board-list__items::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.board-list__items::-webkit-scrollbar-thumb {
+  background-color: var(--color-accent);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
 }
 
 .board-list__item {
   list-style: none;
 }
+

@@ -4,6 +4,12 @@
   gap: 2rem;
 }
 
+.new-card-form__error {
+  padding: 0.5rem;
+  border: 1px solid var(--color-error);
+  box-shadow: 2px 2px 2px var(--color-error);
+}
+
 .new-card-form__input {
   display: flex;
   flex-direction: column;

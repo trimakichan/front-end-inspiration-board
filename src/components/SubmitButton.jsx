@@ -1,4 +1,5 @@
-import './SubmitButton.css'
+import PropTypes from 'prop-types';
+import './SubmitButton.css';
 
 
 const SubmitButton = ({isDisabled}) => {
@@ -7,4 +8,4 @@ const SubmitButton = ({isDisabled}) => {
   )
 }
 
-export default SubmitButton
+export default SubmitButton;

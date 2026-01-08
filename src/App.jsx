@@ -16,7 +16,7 @@ const FORM_TYPES = {
 
 const formVisibility = {
   boardForm: true,
-  cardForm: true
+  cardForm: false
 };
 
 const getAllBoardsAPI = () => {
@@ -48,7 +48,7 @@ const updateLikedCard = (boardId, cardId, boardData) => (
 );
 
 
-const removeCardAPI = (boardId, cardId) => {
+const removeCardAPI = (cardId) => {
   return axios.delete(`${kbaseURL}/cards/${cardId}`)
     .catch(error => console.log(error));
 };
@@ -62,11 +62,10 @@ const getUpdatedBoardsAfterRemoval = (boardId, cardId, boardData) => (
     : boardData
 );
 
-
 function App() {
   const [showForms, setShowForms] = useState(formVisibility);
-  const [boardData, setBoardData] = useState([])
-  const [selectedBoard, setSelectedBoard] = useState()
+  const [boardData, setBoardData] = useState([]);
+  const [selectedBoard, setSelectedBoard] = useState(null);
   const hideAllForms = !showForms.boardForm && !showForms.cardForm;
 
   useEffect(() => {
@@ -81,11 +80,14 @@ function App() {
       ...prev,
       [formType]: !prev[formType]
     }));
+
   };
 
   const handleSelectedBoard = (id) => {
     const board = boardData.find(board => board.id === id);
     setSelectedBoard(board)
+    setShowForms({boardForm: false, cardForm: true}
+    );
   };
 
   const handleRemoveCard = (boardId, cardId) => {
@@ -102,7 +104,7 @@ function App() {
           getUpdatedBoardsAfterRemoval(boardId, cardId, prevSelectedBoardData)
         );
 
-      }).catch(e => console.log(e));;
+      }).catch(e => console.log(e));
   };
 
   const handleLikeCard = (boardId, cardId) => {
@@ -123,7 +125,7 @@ function App() {
     axios.post(`${kbaseURL}/boards`, data)
       .then(result => {
         setBoardData(boardData => {
-          return [result.data.board, ...boardData]
+          return [result.data.board, ...boardData];
         });
       }).catch(e => console.log(e));
   };
@@ -153,19 +155,49 @@ function App() {
     <>
       <Header />
       <div className='layout'>
-        <aside className='sidebar'><BoardList boards={boardData} onUpdateSelectedBoard={handleSelectedBoard} /> </aside>
-        <main className="main"><CardList selectedBoardData={selectedBoard} onIncreaseLike={handleLikeCard} onRemoveCard={handleRemoveCard} /></main>
+        <aside className='sidebar'>
+          <BoardList 
+            boards={boardData} 
+            onUpdateSelectedBoard={handleSelectedBoard} 
+          /> 
+        </aside>
+        <main className="main">
+          <CardList 
+            selectedBoardData={selectedBoard} 
+            onIncreaseLike={handleLikeCard} 
+            onRemoveCard={handleRemoveCard} 
+          />
+        </main>
 
         <aside className={`forms-panel ${hideAllForms ? 'forms-panel--selector' : 'forms-panel--expanded'}`}>
           {showForms.boardForm ? (
-            <NewBoardForm onHideForm={toggleShowForm} formType={FORM_TYPES.BOARD} onHandleBoardSubmit={handleBoardSubmit} />)
-            :
-            <button className='form-btn' onClick={() => toggleShowForm(FORM_TYPES.BOARD)}>Board Form</button>
+            <NewBoardForm 
+              onHideForm={toggleShowForm} 
+              formType={FORM_TYPES.BOARD} 
+              onHandleBoardSubmit={handleBoardSubmit} 
+              />
+            ) :
+            <button 
+              className='form-btn' 
+              onClick={() => toggleShowForm(FORM_TYPES.BOARD)}
+            >
+              Board Form
+            </button>
           }
-          {showForms.cardForm ?
-            (<NewCardForm onHideForm={toggleShowForm} formType={FORM_TYPES.CARD} selectedBoardData={selectedBoard} onHandleCardSubmit={handleCardSubmit} />)
-            : <button className='form-btn' onClick={() => toggleShowForm(FORM_TYPES.CARD)}>Card Form</button>
-
+          {showForms.cardForm ?(
+            <NewCardForm 
+              onHideForm={toggleShowForm} 
+              formType={FORM_TYPES.CARD} 
+              selectedBoardData={selectedBoard} 
+              onHandleCardSubmit={handleCardSubmit} 
+            />
+          ): 
+          <button 
+            className='form-btn' 
+            onClick={() => toggleShowForm(FORM_TYPES.CARD)}
+          >
+            Card Form
+          </button>
           }
         </aside>
       </div>

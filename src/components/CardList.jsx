@@ -1,12 +1,10 @@
 import './CardList.css';
 import Card from './Card';
 import PropTypes from 'prop-types';
-import WelcomeImage from '../assets/work.svg'
+import WelcomeImage from '../assets/work.svg';
 
 const CardList = ({ selectedBoardData, onIncreaseLike, onRemoveCard }) => {
-
   const getCardListJSX = () => {
-    // update to cards from SAMPLE_CARD_DATA and use card.id for key once API is done.
     return selectedBoardData.cards.map(card => {
       return <Card
         key={card.id}
@@ -18,7 +16,7 @@ const CardList = ({ selectedBoardData, onIncreaseLike, onRemoveCard }) => {
         onRemoveCard={onRemoveCard}
       />
     })
-  }
+  };
 
   return (
     <section className='card-list'>
@@ -38,35 +36,37 @@ const CardList = ({ selectedBoardData, onIncreaseLike, onRemoveCard }) => {
           :
           (
             <div className='card-list__welcome'>
-              <h1 className='card-list__welcome-title'>✨ Welcome to your inspiration board ✨
+              <h2 className='card-list__welcome-title'>✨ Welcome to your inspiration board ✨
                 <span>Choose a board to start exploring ideas.</span>
-              </h1>
+              </h2>
               <img src={WelcomeImage} alt='Welcome Image'/>
             </div>
           )}
+
+          {selectedBoardData && selectedBoardData.cards.length === 0 && (
+            <p className='card-list__no-cards'>No cards available. Add a new card to get started!</p>
+          )}
       </div>
     </section>
-
-
-
-  )
+  );
 }
 
 
-// finish this PropTypes later
 CardList.propTypes = {
-  selectedBoardData: PropTypes.objectOf(PropTypes.shape({
+  selectedBoardData: PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     owner: PropTypes.string.isRequired,
-    cards: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      message: PropTypes.string.isRequired,
-      countLikes: PropTypes.number.isRequired
-    })).isRequired,
-  })).isRequired,
+    cards: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        message: PropTypes.string.isRequired,
+        likes: PropTypes.number.isRequired,
+      })
+    ).isRequired,
+  }).isRequired,
   onIncreaseLike: PropTypes.func.isRequired,
-  onRemoveCard:PropTypes.func.isRequired,
+  onRemoveCard: PropTypes.func.isRequired,
 };
 
 export default CardList;

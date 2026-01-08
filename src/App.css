@@ -28,14 +28,13 @@ body {
 }
 
 .sidebar {
-  /* flex: grow shrink basis; */
+  max-height: 700px;
   flex: 0 0 350px;
   border-radius: 2rem;
   padding: 2rem;
   background-color: var(--color-primary);
 
 }
-
 
 .main {
   flex: 1;
