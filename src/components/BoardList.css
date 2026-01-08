@@ -6,7 +6,7 @@
 
 .board-list__items {
   display: flex;
-  max-height: 700px;
+  max-height: 500px;
   overflow-y: auto;
   padding-right: 1rem;
   flex-direction: column;
