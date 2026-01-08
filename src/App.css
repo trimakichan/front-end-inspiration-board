@@ -45,6 +45,8 @@ body {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  /* cubic-bezier(x1, y1, x2, y2) (x1, y1) = how it starts 
+  and (x2, y2) = how it ends*/
   transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
